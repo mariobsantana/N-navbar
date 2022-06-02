@@ -53,7 +53,7 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM }) => {
                 <ArrowsButtons
                   onClick={() => console.log("moved")}
                   size="small"
-                  color="secondary"
+                  color="inherit"
                 />
               </Grid>
 
