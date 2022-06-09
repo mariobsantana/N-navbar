@@ -7,24 +7,34 @@ export interface SwitchProps {
   "data-testid"?: string;
   size?: themeSizes;
   color?: themeColors;
+  setNavSwitch?:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const SwitchButton: FC<SwitchProps> = ({
   size,
   color,
+  setNavSwitch
 }) => {
-  const props = {
-    "data-testid": "SwitchButton",
-    size,
-    color: color,
-  };
+
+
+  const handleOptionA=()=>{
+    if(setNavSwitch){
+    setNavSwitch(false)
+    }
+  }
+
+  const handleOptionB=()=>{
+    if(setNavSwitch){
+   setNavSwitch(true)
+    }
+  
+  }
+
   return (
     <ButtonGroup>
-      <OptionA color={color} size={size} onClick={() => {
-          console.log("Week was clicked!");}}
+      <OptionA color={color} size={size} onClick={handleOptionA}
           >Week</OptionA>
-      <OptionB color={color} size={size} onClick={() => {
-          console.log("Month was clicked!");}}
+      <OptionB color={color} size={size} onClick={handleOptionB}
           >Month</OptionB>
     </ButtonGroup>
   );

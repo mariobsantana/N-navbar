@@ -16,9 +16,11 @@ import { SwitchButton } from "./Switch/Switch";
 
 export interface AppbarProps {
   matchesSM: boolean;
+  navSwitch?: boolean;
+  setNavSwitch?:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM }) => {
+const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
   return (
     <AppBar position="static">
       <Toolbar disableGutters>
@@ -66,7 +68,7 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM }) => {
               </Grid>
 
               <Grid item>
-                <SwitchButton/>
+                <SwitchButton setNavSwitch={setNavSwitch} />
               </Grid>
 
               <Grid item>
