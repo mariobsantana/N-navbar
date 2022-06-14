@@ -6,13 +6,14 @@ import { TodayButton } from "./todayButton/todayButton";
 import { DisplayDate } from "./displayDate/displayDate";
 import MainDrawer from "./Drawer/Drawer";
 import { ArrowsButtons } from "./ArrowsNav/Arrows";
-import { FC } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { hrsT } from "../data/hours";
 import { dates } from "../data/dates";
 import { ImageAvatars } from "./profile/Profile";
 import { MainLogo } from "./logo/logo";
 import { Grid } from "@mui/material";
 import { SwitchButton } from "./Switch/Switch";
+import { Observable } from 'windowed-observable';
 
 export interface AppbarProps {
   matchesSM: boolean;
@@ -20,7 +21,28 @@ export interface AppbarProps {
   setNavSwitch?:React.Dispatch<React.SetStateAction<boolean>>
 }
 
+const observable = new Observable("messages");
+
+
 const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
+  const [messages, setMessages] = useState([]);
+
+  // const handleNewMessage = (newMessage: any) => {
+  //   setMessages((currentMessages) => currentMessages.concat(newMessage));
+  // };
+
+  const handleNewMessage = useCallback((newMessage: any) => {
+    setMessages((currentMessages) => currentMessages.concat(newMessage));
+  },[]);
+
+  useEffect(() => {
+    observable.subscribe(handleNewMessage);
+
+    return () => {
+      observable.unsubscribe(handleNewMessage);
+    };
+  }, [handleNewMessage]);
+
   return (
     <AppBar position="static">
       <Toolbar disableGutters>
@@ -42,13 +64,23 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
           ) : (
             <>
               <Grid item>
-                <TodayButton
+                {/* <TodayButton
                   onClick={() => {
                     console.log("Today button was clicked!");
                   }}
                 >
                   Today
-                </TodayButton>
+                </TodayButton> */}
+                                <div className="MF">
+                  <h3>Microfrontend 1️⃣</h3>
+                  <p>New messages will be displayed below 👇</p>
+                  <div className="MF__messages">
+                    {messages.map((something, i) => (
+                      <p key={something + i}>{something}</p>
+                    ))}
+                  </div>
+                </div>
+
               </Grid>
 
               <Grid item>
