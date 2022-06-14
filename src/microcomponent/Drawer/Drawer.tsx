@@ -78,7 +78,7 @@ export default function MainDrawer() {
           <SwitchButton color="secondary"/>
         </ListItem>
         <ListItem  >
-          <ArrowsButtons  onClick={()=>console.log("desde el drawer")} color="primary" size="small"/>
+          <ArrowsButtons prevMonth={() => console.log("pa atras")} nextMonth={() => console.log("pa lante")} onClick={()=>console.log("desde el drawer")} color="primary" size="small"/>
         </ListItem>
       </List>
     </Box>

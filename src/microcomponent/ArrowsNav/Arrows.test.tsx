@@ -4,12 +4,13 @@ import {ArrowsButtons} from "./Arrows";
 
 describe("Testing arrow buttons", () => {
   const props = {
-    onClick: jest.fn(),
+    prevMonth:jest.fn(),
+    nextMonth:jest.fn()
   };
 
   describe("rendering test", () => {
     test("Should render Arrow nav", () => {
-      render(<ArrowsButtons {...props}/>);
+      render(<ArrowsButtons {...props} />);
       const ArrowComponent = screen.getByTestId("ArrowsNav");
       expect(ArrowComponent).toBeInTheDocument()
     });
@@ -20,13 +21,13 @@ describe("Testing arrow buttons", () => {
       render(<ArrowsButtons {...props}/>);
       const buttonComponent = screen.getByTestId("ArrowsLeft");
       fireEvent.click(buttonComponent);
-      expect(props.onClick).toBeCalled();
+      expect(props.prevMonth).toBeCalled();
     });
     test("Should call onClick function on right arrow click", () => {
       render(<ArrowsButtons {...props}/>);
       const buttonComponent = screen.getByTestId("ArrowsLeft");
       fireEvent.click(buttonComponent);
-      expect(props.onClick).toBeCalled();
+      expect(props.nextMonth).toBeCalled();
     });
   });
 });

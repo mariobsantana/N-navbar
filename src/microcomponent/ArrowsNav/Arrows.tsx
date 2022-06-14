@@ -8,23 +8,26 @@ import {FC} from "react";
 type size = "small" | "medium" | "large";
 
 export interface ArrowProps extends ButtonProps{
- onClick:()=>void;
+ prevMonth:()=>void; 
+ nextMonth:()=>void;
 }
 
 export interface ButtonProps extends IconButtonProps{
    size?:size
 }
 
-export const ArrowsButtons:FC<ArrowProps> =({onClick, size, color}) =>{
-    const props = {onClick, size, color}
+
+
+export const ArrowsButtons:FC<ArrowProps> =({prevMonth,nextMonth, size, color}) =>{
+    const props = { size, color}
 
 
     return (
     <Stack spacing={2} direction="row" data-testid="ArrowsNav">
-        <IconButton aria-label="back" type="button" {...props} data-testid="ArrowsLeft">
+        <IconButton aria-label="back" type="button" {...props} onClick={prevMonth} data-testid="ArrowsLeft">
         <ArrowBackIosNewIcon />
         </IconButton>
-        <IconButton aria-label="forward" type="button" {...props} data-testid="ArrowsRight">
+        <IconButton aria-label="forward" type="button" {...props} onClick={nextMonth} data-testid="ArrowsRight">
         <ArrowForwardIosIcon />
         </IconButton>
 

@@ -22,10 +22,15 @@ export interface AppbarProps {
 }
 
 const observable = new Observable("messages");
+const datesObservable = new Observable("dates");
 
 
 const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
   const [messages, setMessages] = useState([]);
+  const [previous, setPrevious] = useState(null);
+  const [calendarData, setCalendarData]= useState({})
+
+  let newPrev
 
   // const handleNewMessage = (newMessage: any) => {
   //   setMessages((currentMessages) => currentMessages.concat(newMessage));
@@ -35,13 +40,23 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
     setMessages((currentMessages) => currentMessages.concat(newMessage));
   },[]);
 
+  const handleNewCalendar = useCallback((dates: any) => {
+    setCalendarData(dates);
+    console.log('1---', dates)
+    // setPrevious(dates.prevMonth);
+  },[]); 
+
   useEffect(() => {
     observable.subscribe(handleNewMessage);
+   datesObservable.subscribe((dates)=>{
+    console.log('1--month func: ', dates.prevMonth);
+    newPrev= dates.prevMonth
+   });
 
     return () => {
       observable.unsubscribe(handleNewMessage);
     };
-  }, [handleNewMessage]);
+  }, [handleNewMessage,handleNewCalendar]);
 
   return (
     <AppBar position="static">
@@ -84,11 +99,13 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
               </Grid>
 
               <Grid item>
+                {previous ? 
                 <ArrowsButtons
-                  onClick={() => console.log("moved")}
+                  prevMonth={()=>console.log("s", previous)}
+                  nextMonth={()=>console.log("s" , previous)}
                   size="small"
                   color="inherit"
-                />
+                /> : null}
               </Grid>
 
               <Grid item sx={{ flexGrow: 1 }}>
