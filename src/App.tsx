@@ -2,7 +2,7 @@ import Appbar from "./microcomponent/Appbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import {Dates} from "./microcomponent/displayDate/displayDate";
-
+import { Container } from "./microcomponent/WindowObservable";
 export interface AppProps {
   dates ?: Dates ;
   navSwitch?: boolean
@@ -15,6 +15,7 @@ export default function App({dates, navSwitch, setNavSwitch}: AppProps) {
   // console.log("fechas desde el contenedor", dates);
   return (
     <div>
+      {/* <Container matchesSM={matches} setNavSwitch={setNavSwitch}/> */}
       <Appbar matchesSM={matches} setNavSwitch={setNavSwitch}/>
     </div>
   );

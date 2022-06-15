@@ -16,7 +16,7 @@ import { SwitchButton } from "./Switch/Switch";
 import { Observable } from 'windowed-observable';
 
 export interface AppbarProps {
-  matchesSM: boolean;
+  matchesSM: boolean
   navSwitch?: boolean;
   setNavSwitch?:React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -26,37 +26,33 @@ const datesObservable = new Observable("dates");
 
 
 const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
-  const [messages, setMessages] = useState([]);
-  const [previous, setPrevious] = useState(null);
-  const [calendarData, setCalendarData]= useState({})
+const [messages, setMessages] = useState([]);
+  //const [previous, setPrevious] = useState(null);
+  //const [calendarData, setCalendarData]= useState({})
 
-  let newPrev
-
-  // const handleNewMessage = (newMessage: any) => {
-  //   setMessages((currentMessages) => currentMessages.concat(newMessage));
-  // };
+  // let newPrev
 
   const handleNewMessage = useCallback((newMessage: any) => {
-    setMessages((currentMessages) => currentMessages.concat(newMessage));
-  },[]);
+     setMessages((currentMessages) => currentMessages.concat(newMessage));
+   },[])
 
   const handleNewCalendar = useCallback((dates: any) => {
-    setCalendarData(dates);
-    console.log('1---', dates)
+
+    //console.log('1---', dates)
     // setPrevious(dates.prevMonth);
   },[]); 
 
+
   useEffect(() => {
     observable.subscribe(handleNewMessage);
-   datesObservable.subscribe((dates)=>{
-    console.log('1--month func: ', dates.prevMonth);
-    newPrev= dates.prevMonth
-   });
+    datesObservable.subscribe((dates)=>console.log("holaaaaaa",dates));
+
+    // console.log("holaaa", prevMonth, nextMonth)
 
     return () => {
       observable.unsubscribe(handleNewMessage);
     };
-  }, [handleNewMessage,handleNewCalendar]);
+  }, [handleNewMessage]);
 
   return (
     <AppBar position="static">
@@ -99,13 +95,12 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
               </Grid>
 
               <Grid item>
-                {previous ? 
                 <ArrowsButtons
-                  prevMonth={()=>console.log("s", previous)}
-                  nextMonth={()=>console.log("s" , previous)}
+                  prevMonth={()=>console.log("s")}
+                  nextMonth={()=>console.log("s")}
                   size="small"
                   color="inherit"
-                /> : null}
+                /> :
               </Grid>
 
               <Grid item sx={{ flexGrow: 1 }}>

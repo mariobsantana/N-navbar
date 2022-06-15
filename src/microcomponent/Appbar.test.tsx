@@ -4,10 +4,14 @@ import ResponsiveAppBar  from './Appbar';
 
 const propsFalse ={
     matchesSM: false,
+    prevMonth:jest.fn(),
+    nextMonth:jest.fn()
 }
 
 const propsTrue ={
     matchesSM: true,
+    prevMonth: jest.fn(),
+    nextMonth: jest.fn()
 }
 
 test('It should render', () => {
@@ -30,6 +34,6 @@ test('It should render small component', () => {
 
     render(<ResponsiveAppBar {...propsTrue}/>);
 
-    expect(screen.findByTestId('MenuIcon')).toBeDefined()
+    expect(screen.getByTestId('MenuIcon')).toBeDefined()
 
 })
