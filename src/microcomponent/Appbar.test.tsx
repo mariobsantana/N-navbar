@@ -6,12 +6,16 @@ const propsFalse = {
   matchesSM: false,
   prevMonth: jest.fn(),
   nextMonth: jest.fn(),
+  resetDate: jest.fn(),
+  dates: { startDate: new Date(), endDate: new Date() },
 };
 
 const propsTrue = {
   matchesSM: true,
   prevMonth: jest.fn(),
   nextMonth: jest.fn(),
+  resetDate: jest.fn(),
+  dates: { startDate: new Date(), endDate: new Date() },
 };
 
 test("It should render", () => {

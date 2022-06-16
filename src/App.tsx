@@ -4,23 +4,24 @@ import { useTheme } from "@mui/material/styles";
 import { Dates } from "./microcomponent/displayDate/displayDate";
 
 export interface AppProps {
-  dates?: Dates;
   navSwitch?: boolean;
   setNavSwitch?: React.Dispatch<React.SetStateAction<boolean>>;
   prevMonth: () => void;
   nextMonth: () => void;
+  resetDate: () => void;
+  dates: Dates;
 }
 
 export default function App({
-  dates,
   navSwitch,
   setNavSwitch,
   prevMonth,
   nextMonth,
+  resetDate,
+  dates,
 }: AppProps) {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-  // console.log("fechas desde el contenedor", dates);
   return (
     <div>
       <Appbar
@@ -28,6 +29,8 @@ export default function App({
         setNavSwitch={setNavSwitch}
         prevMonth={prevMonth}
         nextMonth={nextMonth}
+        resetDate={resetDate}
+        dates={dates}
       />
     </div>
   );
