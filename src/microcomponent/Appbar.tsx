@@ -13,50 +13,52 @@ import { ImageAvatars } from "./profile/Profile";
 import { MainLogo } from "./logo/logo";
 import { Grid } from "@mui/material";
 import { SwitchButton } from "./Switch/Switch";
-import { Observable } from 'windowed-observable';
+import { Observable } from "windowed-observable";
 
 export interface AppbarProps {
   matchesSM: boolean;
   navSwitch?: boolean;
-  setNavSwitch?:React.Dispatch<React.SetStateAction<boolean>>
+  setNavSwitch?: React.Dispatch<React.SetStateAction<boolean>>;
+  prevMonth: () => void;
+  nextMonth: () => void;
 }
 
 const observable = new Observable("messages");
 const datesObservable = new Observable("dates");
 
-
-const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
+const ResponsiveAppBar: FC<AppbarProps> = ({
+  matchesSM,
+  setNavSwitch,
+  prevMonth,
+  nextMonth,
+}) => {
   const [messages, setMessages] = useState([]);
   const [previous, setPrevious] = useState(null);
-  const [calendarData, setCalendarData]= useState({})
+  const [calendarData, setCalendarData] = useState({});
 
-  let newPrev
-
-  // const handleNewMessage = (newMessage: any) => {
-  //   setMessages((currentMessages) => currentMessages.concat(newMessage));
-  // };
+  let newPrev;
 
   const handleNewMessage = useCallback((newMessage: any) => {
     setMessages((currentMessages) => currentMessages.concat(newMessage));
-  },[]);
+  }, []);
 
   const handleNewCalendar = useCallback((dates: any) => {
     setCalendarData(dates);
-    console.log('1---', dates)
+    console.log("1---", dates);
     // setPrevious(dates.prevMonth);
-  },[]); 
+  }, []);
 
   useEffect(() => {
     observable.subscribe(handleNewMessage);
-   datesObservable.subscribe((dates)=>{
-    console.log('1--month func: ', dates.prevMonth);
-    newPrev= dates.prevMonth
-   });
+    // datesObservable.subscribe((dates)=>{
+    //  console.log('1--month func: ', dates.prevMonth);
+    //  newPrev= dates.prevMonth
+    // });
 
     return () => {
       observable.unsubscribe(handleNewMessage);
     };
-  }, [handleNewMessage,handleNewCalendar]);
+  }, [handleNewMessage, handleNewCalendar]);
 
   return (
     <AppBar position="static">
@@ -79,33 +81,22 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
           ) : (
             <>
               <Grid item>
-                {/* <TodayButton
+                <TodayButton
                   onClick={() => {
                     console.log("Today button was clicked!");
                   }}
                 >
                   Today
-                </TodayButton> */}
-                                <div className="MF">
-                  <h3>Microfrontend 1️⃣</h3>
-                  <p>New messages will be displayed below 👇</p>
-                  <div className="MF__messages">
-                    {messages.map((something, i) => (
-                      <p key={something + i}>{something}</p>
-                    ))}
-                  </div>
-                </div>
-
+                </TodayButton>
               </Grid>
 
               <Grid item>
-                {previous ? 
                 <ArrowsButtons
-                  prevMonth={()=>console.log("s", previous)}
-                  nextMonth={()=>console.log("s" , previous)}
+                  prevMonth={prevMonth}
+                  nextMonth={nextMonth}
                   size="small"
                   color="inherit"
-                /> : null}
+                />
               </Grid>
 
               <Grid item sx={{ flexGrow: 1 }}>
@@ -113,7 +104,7 @@ const ResponsiveAppBar: FC<AppbarProps> = ({ matchesSM, setNavSwitch }) => {
               </Grid>
 
               <Grid item mx={1}>
-                <PopoverPopupState  hours={hrsT} />
+                <PopoverPopupState hours={hrsT} />
               </Grid>
 
               <Grid item>
