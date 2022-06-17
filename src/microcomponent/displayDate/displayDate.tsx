@@ -9,7 +9,8 @@ export interface Dates {
   endDate: Date;
 }
 export interface DatesProps extends DisplayProps {
-  dates: Dates;
+  dates: number;
+  // dates: Dates;
   "data-testid": string;
 }
 
@@ -23,7 +24,18 @@ export const DisplayDate: FC<DatesProps> = ({ dates, color }) => {
     color,
   };
   const theme = useTheme();
-  const { startDate, endDate } = dates;
+
+  const { startDate, endDate } = {
+    startDate: new Date(
+      `2022-${dates + 1}-16`
+      // `${calendar.year}-${monthNumber + 1}-${calendar.currentDay}`
+    ),
+    endDate: new Date(
+      `2022-${dates + 1}-16`
+      // `${calendar.year}-${monthNumber + 1}-${calendar.currentDay}`
+    ),
+  };
+  // const { startDate, endDate } = dates;
 
   const colors: { [key in themeColors]: string } = {
     primary: theme.palette.primary.main,
@@ -31,7 +43,7 @@ export const DisplayDate: FC<DatesProps> = ({ dates, color }) => {
     default: "#fff",
   };
 
-  const StyledDiv = styled("div")<DisplayProps>`
+  const StyledDiv = styled("div") <DisplayProps>`
     font-size: 1rem;
     font-weight: normal;
     font-style: normal;

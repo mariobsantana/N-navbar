@@ -9,7 +9,8 @@ export interface AppProps {
   prevMonth: () => void;
   nextMonth: () => void;
   resetDate: () => void;
-  dates: Dates;
+  dates: number;
+  // dates: Dates;
 }
 
 export default function App({

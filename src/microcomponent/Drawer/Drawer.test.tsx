@@ -13,7 +13,8 @@ const props = {
   prevMonth: jest.fn(),
   nextMonth: jest.fn(),
   resetDate: jest.fn(),
-  dates: { startDate: new Date(), endDate: new Date() },
+  dates: 12,
+  // dates: { startDate: new Date(), endDate: new Date() },
 };
 
 describe("Drawer button tests", () => {

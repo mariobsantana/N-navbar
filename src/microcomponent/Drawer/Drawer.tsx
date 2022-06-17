@@ -69,7 +69,7 @@ export default function MainDrawer() {
           <ListItemIcon>
             <CalendarMonthIcon color="primary" />
           </ListItemIcon>
-          <DisplayDate dates={dates} data-testid={"displayDate"} color="primary"/>
+          {/* <DisplayDate dates={dates} data-testid={"displayDate"} color="primary"/> */}
         </ListItem>
       </List>
       <Divider />

@@ -20,7 +20,8 @@ export interface AppbarProps {
   prevMonth: () => void;
   nextMonth: () => void;
   resetDate: () => void;
-  dates: Dates;
+  dates: number;
+  // dates: Dates;
 }
 
 const ResponsiveAppBar: FC<AppbarProps> = ({

@@ -7,7 +7,8 @@ const propsFalse = {
   prevMonth: jest.fn(),
   nextMonth: jest.fn(),
   resetDate: jest.fn(),
-  dates: { startDate: new Date(), endDate: new Date() },
+  dates: 12,
+  // dates: { startDate: new Date(), endDate: new Date() },
 };
 
 const propsTrue = {
@@ -15,7 +16,8 @@ const propsTrue = {
   prevMonth: jest.fn(),
   nextMonth: jest.fn(),
   resetDate: jest.fn(),
-  dates: { startDate: new Date(), endDate: new Date() },
+  dates: 12,
+  // dates: { startDate: new Date(), endDate: new Date() },
 };
 
 test("It should render", () => {
