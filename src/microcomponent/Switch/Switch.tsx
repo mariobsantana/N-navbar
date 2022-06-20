@@ -32,9 +32,15 @@ export const SwitchButton: FC<SwitchProps> = ({
 
   return (
     <ButtonGroup>
-      <OptionA color={color} size={size} onClick={handleOptionA}
+      <OptionA color={color} size={size} onClick={()=>{
+      handleOptionB()
+      console.log("Week was clicked!");
+      }}
           >Week</OptionA>
-      <OptionB color={color} size={size} onClick={handleOptionB}
+      <OptionB color={color} size={size} onClick={()=>{
+      handleOptionA()
+      console.log("Month was clicked!");
+      }}
           >Month</OptionB>
     </ButtonGroup>
   );

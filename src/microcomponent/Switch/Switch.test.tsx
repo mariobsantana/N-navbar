@@ -84,14 +84,14 @@ describe("Today button tests", () => {
   describe("Functionality tests Month button", () => {
     test("Should call onClick function", () => {
         render(<SwitchButton {...props}/>);
-          
-          console.log = jest.fn();
-    
-          const buttonComponent = screen.getByText(/Month/);
-          fireEvent.click(buttonComponent);
-    
-          const consoleSpy = jest.spyOn(console, 'log');
-          expect(consoleSpy).toHaveBeenCalledWith("Month was clicked!");
+
+        console.log = jest.fn();
+        
+        const buttonComponent = screen.getByText(/Month/);
+        fireEvent.click(buttonComponent);
+        
+        const consoleSpy = jest.spyOn(console, 'log');
+        expect(consoleSpy).toHaveBeenCalledWith("Month was clicked!");
     });
   });
 });

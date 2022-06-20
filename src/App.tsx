@@ -1,7 +1,6 @@
 import Appbar from "./microcomponent/Appbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { Dates } from "./microcomponent/displayDate/displayDate";
 
 export interface AppProps {
   navSwitch?: boolean;
@@ -9,8 +8,7 @@ export interface AppProps {
   prevMonth: () => void;
   nextMonth: () => void;
   resetDate: () => void;
-  dates: number;
-  // dates: Dates;
+  dates: number[];
 }
 
 export default function App({

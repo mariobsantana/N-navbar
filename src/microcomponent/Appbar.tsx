@@ -3,10 +3,10 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { PopoverPopupState } from "./displayhrs/DisplayHrs";
 import { TodayButton } from "./todayButton/todayButton";
-import { Dates, DisplayDate } from "./displayDate/displayDate";
+import { DisplayDate } from "./displayDate/displayDate";
 import MainDrawer from "./Drawer/Drawer";
 import { ArrowsButtons } from "./ArrowsNav/Arrows";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { hrsT } from "../data/hours";
 import { ImageAvatars } from "./profile/Profile";
 import { MainLogo } from "./logo/logo";
@@ -20,8 +20,7 @@ export interface AppbarProps {
   prevMonth: () => void;
   nextMonth: () => void;
   resetDate: () => void;
-  dates: number;
-  // dates: Dates;
+  dates: number[];
 }
 
 const ResponsiveAppBar: FC<AppbarProps> = ({
@@ -32,12 +31,6 @@ const ResponsiveAppBar: FC<AppbarProps> = ({
   resetDate,
   dates,
 }) => {
-  /*
-  const [monthDates, setMonthDate] = useState<Dates>({
-    startDate: dates,
-    endDate: dates,
-  });
-*/
 
   return (
     <AppBar position="static">

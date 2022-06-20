@@ -25,7 +25,7 @@ describe("Testing arrow buttons", () => {
     });
     test("Should call onClick function on right arrow click", () => {
       render(<ArrowsButtons {...props}/>);
-      const buttonComponent = screen.getByTestId("ArrowsLeft");
+      const buttonComponent = screen.getByTestId("ArrowsRight");
       fireEvent.click(buttonComponent);
       expect(props.nextMonth).toBeCalled();
     });

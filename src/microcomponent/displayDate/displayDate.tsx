@@ -1,16 +1,14 @@
-import * as React from "react";
 import { FC } from "react";
 import { useTheme, styled } from "@mui/material";
 import { themeColors } from "../../types/customs";
 
 
-export interface Dates {
-  startDate: Date;
-  endDate: Date;
-}
+// export interface Dates {
+//   startDate: Date;
+//   endDate: Date;
+// }
 export interface DatesProps extends DisplayProps {
-  dates: number;
-  // dates: Dates;
+  dates: number[];
   "data-testid": string;
 }
 
@@ -27,15 +25,12 @@ export const DisplayDate: FC<DatesProps> = ({ dates, color }) => {
 
   const { startDate, endDate } = {
     startDate: new Date(
-      `2022-${dates + 1}-16`
-      // `${calendar.year}-${monthNumber + 1}-${calendar.currentDay}`
+      `${dates[0]}-${dates[1] + 1}-${dates[2] + 1}`
     ),
     endDate: new Date(
-      `2022-${dates + 1}-16`
-      // `${calendar.year}-${monthNumber + 1}-${calendar.currentDay}`
+      `${dates[0]}-${dates[1] + 1}-${dates[2] + 1}`
     ),
   };
-  // const { startDate, endDate } = dates;
 
   const colors: { [key in themeColors]: string } = {
     primary: theme.palette.primary.main,

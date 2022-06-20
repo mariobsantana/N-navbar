@@ -1,7 +1,5 @@
-import {Dates} from "../microcomponent/displayDate/displayDate"
-
        
-export const dates:Dates={
+export const dates={
     startDate: new Date(),
     endDate: new Date(),
 }
