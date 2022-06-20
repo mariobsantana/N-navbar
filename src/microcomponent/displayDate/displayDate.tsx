@@ -9,6 +9,7 @@ import { themeColors } from "../../types/customs";
 // }
 export interface DatesProps extends DisplayProps {
   dates: number[];
+  date2?:number[];
   "data-testid": string;
 }
 
@@ -16,7 +17,7 @@ interface DisplayProps {
   color?: themeColors;
 }
 
-export const DisplayDate: FC<DatesProps> = ({ dates, color }) => {
+export const DisplayDate: FC<DatesProps> = ({ dates, date2 = dates, color }) => {
   const props = {
     "data-testid": "displayDate",
     color,
@@ -25,10 +26,10 @@ export const DisplayDate: FC<DatesProps> = ({ dates, color }) => {
 
   const { startDate, endDate } = {
     startDate: new Date(
-      `${dates[0]}-${dates[1] + 1}-${dates[2] + 1}`
+      `${dates[0]}-${dates[1]}-${dates[2]}`
     ),
     endDate: new Date(
-      `${dates[0]}-${dates[1] + 1}-${dates[2] + 1}`
+      `${date2[0]}-${date2[1]}-${date2[2]}`
     ),
   };
 

@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { DisplayDate } from './displayDate'
+import { dates } from "../../data/dates"
 
-//componente de semana y no explote todo
 const props = {
-    dates: [1, 2, 3]
+    dates: [2022, 9, 3],
+    date2: [2022, 10, 3]
 }
 test("Should render text correctly", () => {
 
@@ -18,24 +19,23 @@ describe("Should render date correctly depending on props", () => {
 
     test("Should render same date correctly", () => {
         const diffDateProps = {
-            startDate: [2022, 10, 3],
-            endDate: [2022, 10, 3],
+            dates: [2022, 10, 3]
         }
 
-        render(<DisplayDate {...props} {...diffDateProps} data-testid="displayDate" />);
-        const displayComponent = screen.getByText("Feb 2022");
+        render(<DisplayDate {...diffDateProps} data-testid="displayDate" />);
+        const displayComponent = screen.getByText("Oct 2022");
         expect(displayComponent).toBeInTheDocument();
 
     });
 
     test("Should render different date correctly", () => {
         const diffDateProps = {
-            startDate: [1, 2, 3],
-            endDate: [1, 3, 3],
+            dates: [2022, 10, 3],
+            date2: [2022, 11, 3]
         }
 
         render(<DisplayDate {...props} {...diffDateProps} data-testid="displayDate" />);
-        const displayComponent = screen.getByText("Feb - Mar 2022");
+        const displayComponent = screen.getByText("Oct - Nov 2022");
         expect(displayComponent).toBeInTheDocument();
 
     });
