@@ -26,12 +26,13 @@ export const DisplayDate: FC<DatesProps> = ({ dates, date2 = dates, color }) => 
 
   const { startDate, endDate } = {
     startDate: new Date(
-      `${dates[0]}-${dates[1]}-${dates[2]}`
+      `${dates[0]}-${dates[1]+1}-${dates[2]}`
     ),
     endDate: new Date(
-      `${date2[0]}-${date2[1]}-${date2[2]}`
+      `${date2[0]}-${date2[1]+1}-${date2[2]}`
     ),
   };
+  console.log("Karly Nasabi", `${dates[0]}-${dates[1]+1}-${dates[2]}`)
 
   const colors: { [key in themeColors]: string } = {
     primary: theme.palette.primary.main,
