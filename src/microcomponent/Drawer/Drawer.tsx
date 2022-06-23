@@ -18,8 +18,11 @@ import {hrsT} from "../../data/hours";
 import {dates} from "../../data/dates";
 import { DisplayDate } from "../displayDate/displayDate";
 import { SwitchButton } from "../Switch/Switch";
+import { AppbarProps } from "../Appbar";
+import { FC } from 'react';
+import ResponsiveAppBar from "../Appbar";
 
-export default function MainDrawer() {
+export const MainDrawer : FC<AppbarProps> = (props: AppbarProps) => {
   const [rightOpen, setRightOpen] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
 
@@ -78,7 +81,14 @@ export default function MainDrawer() {
           <SwitchButton color="secondary"/>
         </ListItem>
         <ListItem  >
-          <ArrowsButtons prevMonth={() => console.log("pa atras")} nextMonth={() => console.log("pa lante")} onClick={()=>console.log("desde el drawer")} color="primary" size="small"/>
+          <ArrowsButtons  
+          prevMonth={props.prevMonth}
+          nextMonth={props.nextMonth} color="primary" size="small"/>
+        </ListItem>
+        <ListItem>
+          <DisplayDate 
+            dates={props.dates} 
+            data-testid={"displayDate"} color="primary"/>
         </ListItem>
       </List>
     </Box>
