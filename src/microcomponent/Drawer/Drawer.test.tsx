@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import Appbar from "../Appbar";
 import { IconButton } from "@mui/material";
-import { MainDrawer as Drawer } from "./Drawer";
+import { MainDrawer as Drawer, MainDrawer } from "./Drawer";
 
 const props = {
   prevMonth: jest.fn(),
@@ -40,12 +40,12 @@ describe("Drawer button tests", () => {
       fireEvent.click(screen.getByText(/a/i));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
-    // it("should trigger drawer", async () => {
-    //   const { getByTestId } = render(<Drawer />);
+    it("should trigger drawer", async () => {
+      const { getByTestId } = render(<MainDrawer matchesSM={false} {...props} data-testid="mainDrawer" />);
 
-    //   fireEvent.click(getByTestId("mainDrawer"));
-    //   expect(getByTestId("mainDrawer")).toBeVisible();
-    // });
+      fireEvent.click(getByTestId("mainDrawer"));
+      expect(getByTestId("mainDrawer")).toBeVisible();
+    });
   });
 
   describe("Fire event when a key is pressed", () => {
@@ -77,9 +77,7 @@ describe("Drawer button tests", () => {
       console.log = jest.fn();
       const arrowComponent = screen.getByTestId("ArrowsLeft");
       expect(arrowComponent).toBeInTheDocument();
-      fireEvent.click(arrowComponent);
-      const consoleSpy = jest.spyOn(console, "log");
-      expect(consoleSpy).toHaveBeenCalledWith("pa atras");
+
     });
   });
 });
