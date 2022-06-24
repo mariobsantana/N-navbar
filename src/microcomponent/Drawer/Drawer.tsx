@@ -56,9 +56,7 @@ export const MainDrawer : FC<AppbarProps> = (props: AppbarProps) => {
           <ListItemIcon>
             <TodayIcon color="primary" />
           </ListItemIcon>
-          <ListItemText onClick={() => {
-                  console.log("Today button was clicked!");
-                }} primary="Today" />
+          <ListItemText onClick={props.resetDate} primary="Today" />
         </ListItem>
         <ListItem >
           <ListItemIcon>
@@ -69,26 +67,25 @@ export const MainDrawer : FC<AppbarProps> = (props: AppbarProps) => {
 
         </ListItem>
         <ListItem >
-          <ListItemIcon>
-            <CalendarMonthIcon color="primary" />
+          <ListItemIcon >
+            <CalendarMonthIcon color="primary" style={{marginRight:"1.2em"}}/>
+            <ListItemText>
+          <DisplayDate 
+            dates={props.dates} 
+            data-testid={"displayDate"} color="primary"/>
+            </ListItemText>
           </ListItemIcon>
-          {/* <DisplayDate dates={dates} data-testid={"displayDate"} color="primary"/> */}
         </ListItem>
       </List>
       <Divider />
       <List>
         <ListItem color="primary">
-          <SwitchButton color="secondary"/>
+          <SwitchButton setNavSwitch={props.setNavSwitch} color="secondary"/>
         </ListItem>
         <ListItem  >
           <ArrowsButtons  
           prevMonth={props.prevMonth}
           nextMonth={props.nextMonth} color="primary" size="small"/>
-        </ListItem>
-        <ListItem>
-          <DisplayDate 
-            dates={props.dates} 
-            data-testid={"displayDate"} color="primary"/>
         </ListItem>
       </List>
     </Box>

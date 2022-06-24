@@ -54,6 +54,7 @@ const ResponsiveAppBar: FC<AppbarProps> = ({
               prevMonth={prevMonth}
               nextMonth={nextMonth}
               resetDate={resetDate}
+              setNavSwitch={setNavSwitch}
                />
             </Grid>
           ) : (
